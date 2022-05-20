@@ -5,7 +5,7 @@ import MovieForm from './MovieForm';
 
 
 export default function MovieList(props) {
-//const [isMovieForm, setIsMovieForm] = useState(true)
+
     function handleDelete(movie){
 
         const firebase = new Fire();
@@ -26,7 +26,7 @@ export default function MovieList(props) {
                     <Card.Actions>
                         
                         {/* POSSIBILITE D'AFFICHER LES VALUES */}
-                        <Button onPress={() => props.handlePress(movie)}>
+                        <Button onPress={() => props.handlePressUpdate(movie)}>
                             Modifier 
                         </Button>
 
@@ -41,7 +41,6 @@ export default function MovieList(props) {
                 </Card>
             ))}
 
-            {/* <MovieForm isComment = {isComment}/> */}
             
         </>
 

@@ -8,34 +8,31 @@ export default function MovieForm(props) {
         <View style={styles.container}>
 
             <View>
-
                 <Text>Titre</Text>
                 <TextInput
-                    style={[styles.textInput, { height: 40 }]}
+                    style = {[styles.textInput, { height: 40 }]}
                     placeholder="Le titre du film"
-                    value={props.title}
+                    value = {props.title}
                     onChangeText={props.handleTitleChange}
                 />
                 <Text>Synopsis</Text>
                 <TextInput
-                    style={[styles.textInput, { height: 120 }]}
+                    style = {[styles.textInput, { height: 120 }]}
                     multiline
                     placeholder="Le synopsis du film"
-
                     value = { props.synopsis}
                     onChangeText={props.handleSynopsisChange}
                 />
                 <Text>Url de l'image du film</Text>
                 <TextInput
-                    style={[styles.textInput, { height: 40 }]}
-                    placeholder="L'url du film"
-                    value={props.urlImage}
-                    onChangeText={props.handleUrlImageChange}
-                />
-                
+                    style = {[styles.textInput, { height: 40 }]}
+                    placeholder = "L'url du film"
+                    value = {props.urlImage}
+                    onChangeText = {props.handleUrlImageChange}
+                />          
             </View>
 
-            <Button title="Create" onPress={props.onSubmit} ></Button>
+            <Button title="Mettre à jour" onPress={props.onSubmit} ></Button>
         </View>
     )
 }

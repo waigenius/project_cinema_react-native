@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import AddButton from './components/AddButton';
 import { useState, useEffect } from "react";
 import MovieModal from './components/MovieModal';
@@ -15,14 +15,10 @@ export default function App() {
   const [isCommentModalVisible, setIsCommentModalVisible] = useState(false)
   const [movies, setMovies] = useState([])
   const [loading, setLoading] = useState(true)
-
-  //Update Partie
-  const [selectedMovie, setSelectedMovie] = useState(null)
-
+  const [selectedMovie, setSelectedMovie] = useState(null) //Update Partie
 
 
   //Initilalisation des composants
-
   useEffect(() => {
     const firebase = new Fire()
     firebase.getMovies(movies => {
@@ -35,58 +31,52 @@ export default function App() {
   }, [])
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.h1}>
-        Welcome to movies
-      </Text>
+    <ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.h1}>
+          Welcome to movies
+        </Text>
 
-      {loading === true && <ActivityIndicator></ActivityIndicator>}
+        {loading === true && <ActivityIndicator></ActivityIndicator>}
 
-      <MovieList
-        listeMovies={movies}      
-        isVisible={isModalVisible}
-
-        //Permet de rendre visible la Modale pour effectuer une modification 
-        //Et une condition pour afficher le formulaire de création de 
-        handlePress={(movie) => { setIsModalVisible(true), setSelectedMovie(movie) }}
-
-        handleCommentPress={(movie) => { setIsCommentModalVisible(true), setSelectedMovie(movie) }}
-      />
-
-      {/* MODAL POUR LE COMMENTAIRE */}
-      {isCommentModalVisible &&
-        (
-          <CommentModal
-            isVisible={isCommentModalVisible}
+        {isModalVisible && (
+          <MovieModal
+            contenuTexte={selectedMovie ? "Modification du film" : "Ajouter d'un nouveau film"}
+            isVisible={isModalVisible}
             movie={selectedMovie}
-            listeComments={selectedMovie.comments}
-            handleClose={() => { setIsCommentModalVisible(false) }}
-
+            isCreateComments={isCommentModalVisible}
+            handleClose={() => { setIsModalVisible(false), setSelectedMovie(null) }}
           />
+
         )}
-
-
-      {isModalVisible && (
-        <MovieModal
-          //Permet d'afficher le titre dans la modale en fonction de l'action cliquée
-          contenuTexte={selectedMovie ? "Modification du film" : "Ajouter un nouveau film"}
+        <MovieList
+          listeMovies={movies}
           isVisible={isModalVisible}
-          movie={selectedMovie}
-          isCreateComments={isCommentModalVisible}
-
-          handleClose={() => { setIsModalVisible(false), setSelectedMovie(null) }}
+          handlePressUpdate={(movie) => { setIsModalVisible(true), setSelectedMovie(movie) }}
+          handleCommentPress={(movie) => { setIsCommentModalVisible(true), setSelectedMovie(movie) }}
         />
 
-      )}
+        {/* MODAL POUR LE COMMENTAIRE */}
+        {isCommentModalVisible &&
+          (
+            <CommentModal
+              isVisible={isCommentModalVisible}
+              movie={selectedMovie}
+              listeComments={selectedMovie.comments}
+              handleClose={() => { setIsCommentModalVisible(false) }}
 
-      <AddButton
-        content="add a Movie"
-        // le state setIsUpdate permet de signifier qu'il n' y a pas de modification.
-        handlePress={() => { setIsModalVisible(true), setSelectedMovie(null) }}
-      />
+            />
+          )}
 
-      <StatusBar style="auto" />
-    </View>
+
+        <AddButton
+          content="Ajouter un film"
+          handlePressAdd={() => { setIsModalVisible(true), setSelectedMovie(null) }}
+        />
+
+        <StatusBar style="auto" />
+      </View>
+    </ScrollView>
   );
 }
 

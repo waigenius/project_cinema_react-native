@@ -3,6 +3,6 @@ import React from 'react'
 
 export default function AddButton(props) {
   return (
-      <Button title={props.content} onPress={props.handlePress}> </Button>
+      <Button title={props.content} onPress={props.handlePressAdd}> </Button>
   )
 }
