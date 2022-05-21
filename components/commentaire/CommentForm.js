@@ -3,23 +3,22 @@ import React from 'react'
 
 export default function CommentForm(props) {
 
+    ///Affichage du tableau de commentaires
     console.log(props.comments);
-    //RENVOIR UNDEFINED
-    // console.log("We are here");
-    // console.log(props.commentAuthor);
-    // console.log(props.commentContent);
+    // Affichage du nom de l'auteur
+    console.log(props.commentAuthor);
+
     return (
         <View>
             <View>
                 <View>
                     
-
                     <Text>Nom de l'auteur</Text>
                     <TextInput
-                        placeholder="Entrer votre prénom"
                         style={[styles.textInput, { height: 40 }]}
+                        placeholder="Entrer votre prénom"
                         value={props.commentAuthor}
-                        onTextInput={props.handleCommentAuthorChange}
+                        onChangeText={props.handleCommentAuthorChange}
 
                     />
                     <Text>Commentaire</Text>
@@ -27,12 +26,12 @@ export default function CommentForm(props) {
                         style={[styles.textInput, { height: 140 }]}
                         placeholder="Entrer votre commentaire"
                         multiline="true"
-                        value={props.commentContent}
-                        onTextInput={props.handleCommentContentChange}
+                        value={props.commentaire}
+                        onChangeText={props.handleCommentContentChange}
                     />
                 </View>
 
-                <Button title="Valider Commentaire" onPress={props.onSubmit}  ></Button>
+                <Button title="Valider Commentaire" onPress={props.onSubmitCommentaire}></Button>
             </View>
         </View>
     )

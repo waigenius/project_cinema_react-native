@@ -2,15 +2,18 @@ import { View, Text, Modal, Button, StyleSheet } from 'react-native'
 import { Card, Title, Paragraph, Button as ButtonPaper } from 'react-native-paper';
 import React, { useState } from 'react'
 import CommentForm from './CommentForm'
+import Fire from '../../Fire';
 
 export default function CommentModal(props) {
 
-    console.log(props.listeComments); // ok
-    console.log(props.movie);
+    // console.log(props.listeComments); // ok
+    // console.log(props.movie);//ok
+
 
     const [isFormVisible, setIsFormVisible] = useState(false)
-    const [comments, setComments] = useState([])
-    const [authors, setAuthors] = useState("")
+    const [comments, setComments] = useState(props.movie ? props.listeComments : [])
+    const [author, setAuthor] = useState("")
+    const [commentaire, setCommentaire] = useState("")
 
 
     function handleSubmitCommentaire() {
@@ -18,9 +21,9 @@ export default function CommentModal(props) {
         const firebase = new Fire();
 
         let newMovie = {
-            title: title,
-            synopsis: synopsis,
-            urlImage: urlImage,
+            title: props.movie.title,
+            synopsis: props.movie.synopsis,
+            urlImage: props.movie.urlImage,
             comments: comments
         }
 
@@ -28,8 +31,11 @@ export default function CommentModal(props) {
 
             newMovie.id = props.movie.id;
             newMovie.comments = props.movie.comments;
+            newMovie.comments.push({author, commentaire})
             firebase.updateMovie(newMovie);
+            setIsFormVisible(false)
         }
+
     }
 
     return (
@@ -38,7 +44,13 @@ export default function CommentModal(props) {
             <Modal visible={props.isVisible} animationType="slide">
                 {isFormVisible ?
                     <View>
-                        <CommentForm comments="" />
+                        <CommentForm 
+                            commentAuthor = {author}
+                            commentaire = {commentaire}
+                            handleCommentAuthorChange = {newCommentAuthor => setAuthor(newCommentAuthor)}
+                            handleCommentContentChange = {newCommentaire => setCommentaire(newCommentaire)}
+                            onSubmitCommentaire={() => handleSubmitCommentaire()}
+                        />
                         <Button title="Retourner" onPress={() => setIsFormVisible(false)} />
                     </View>
                     :
@@ -55,7 +67,7 @@ export default function CommentModal(props) {
                                 </Card.Content>
                                 <Card.Content>
                                     <Title>Date de publication</Title>
-                                    <Paragraph>{comment.published.toDate().toLocaleDateString()}</Paragraph>
+                                    {/* <Paragraph>{comment.published.toDate().toLocaleDateString()}</Paragraph> */}
                                 </Card.Content>
                             </Card>
                         ))}
