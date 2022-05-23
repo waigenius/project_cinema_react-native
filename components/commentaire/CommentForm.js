@@ -3,8 +3,6 @@ import React from 'react'
 
 export default function CommentForm(props) {
 
-    ///Affichage du tableau de commentaires
-    console.log(props.comments);
     // Affichage du nom de l'auteur
     console.log(props.commentAuthor);
 
@@ -29,6 +27,7 @@ export default function CommentForm(props) {
                         value={props.commentaire}
                         onChangeText={props.handleCommentContentChange}
                     />
+          
                 </View>
 
                 <Button title="Valider Commentaire" onPress={props.onSubmitCommentaire}></Button>

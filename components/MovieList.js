@@ -1,5 +1,6 @@
 import { Card, Title, Paragraph, Button } from 'react-native-paper';
-import React, {useState} from 'react'
+import React from 'react'
+import { StyleSheet } from 'react-native';
 import Fire from '../Fire'
 import MovieForm from './MovieForm';
 
@@ -15,13 +16,12 @@ export default function MovieList(props) {
     return (
         <>
             {props.listeMovies.map(movie => (
-                <Card>
+                <Card style={styles.containerMovie}>
+   
+                    <Card.Cover source={{ uri: movie.urlImage }} style={styles.imageUrl} />
                     <Card.Content>
-                        <Title> {movie.title}</Title>
-                    </Card.Content>
-                    <Card.Cover source={{ uri: movie.urlImage }} />
-                    <Card.Content>
-                        <Paragraph>{movie.synopsis}</Paragraph>
+                        <Title style={{fontWeight: 'bold'}}>{movie.title}</Title>
+                        <Paragraph style={{textAlign:'justify'}}>{movie.synopsis}</Paragraph>
                     </Card.Content>
                     <Card.Actions>
                         
@@ -45,4 +45,28 @@ export default function MovieList(props) {
         </>
 
     )
+
+
+
 }
+
+const styles = StyleSheet.create({
+
+    containerMovie:{
+
+        backgroundColor : "#F7F7F7",
+        boxShadow : "5px 5px 15px #ABB2B9",
+        marginBottom: 50,
+        padding:10,
+        marginRight:20,
+        marginLeft:20,
+
+
+    },
+    imageUrl:{
+
+        
+
+    }
+
+})

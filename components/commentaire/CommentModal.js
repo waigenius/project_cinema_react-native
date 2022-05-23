@@ -14,6 +14,7 @@ export default function CommentModal(props) {
     const [comments, setComments] = useState(props.movie ? props.listeComments : [])
     const [author, setAuthor] = useState("")
     const [commentaire, setCommentaire] = useState("")
+    const [published, setPublished] = useState("");
 
 
     function handleSubmitCommentaire() {
@@ -31,13 +32,13 @@ export default function CommentModal(props) {
 
             newMovie.id = props.movie.id;
             newMovie.comments = props.movie.comments;
-            newMovie.comments.push({author, commentaire})
+            newMovie.comments.push({author, commentaire, published})
             firebase.updateMovie(newMovie);
             setIsFormVisible(false)
         }
 
     }
-
+    console.log(comments);
     return (
         <>
 
@@ -45,11 +46,12 @@ export default function CommentModal(props) {
                 {isFormVisible ?
                     <View>
                         <CommentForm 
+                            
                             commentAuthor = {author}
                             commentaire = {commentaire}
                             handleCommentAuthorChange = {newCommentAuthor => setAuthor(newCommentAuthor)}
                             handleCommentContentChange = {newCommentaire => setCommentaire(newCommentaire)}
-                            onSubmitCommentaire={() => handleSubmitCommentaire()}
+                            onSubmitCommentaire={() => {handleSubmitCommentaire() }}
                         />
                         <Button title="Retourner" onPress={() => setIsFormVisible(false)} />
                     </View>
@@ -59,15 +61,14 @@ export default function CommentModal(props) {
                         {props.listeComments.map(comment => (
                             <Card>
                                 <Card.Content>
-                                    <Title> Auteur : {comment.author} </Title>
-                                </Card.Content>
-                                <Card.Content>
-                                    <Title>Commentaire</Title>
+                                    <Card.Content>
+                                        <Title> Auteur : {comment.author} </Title>
+                                    </Card.Content>
+                                    <Title> Commentaire </Title>
                                     <Paragraph>{comment.commentaire}</Paragraph>
                                 </Card.Content>
                                 <Card.Content>
-                                    <Title>Date de publication</Title>
-                                    {/* <Paragraph>{comment.published.toDate().toLocaleDateString()}</Paragraph> */}
+                                    <Title> Date de publication  </Title>
                                 </Card.Content>
                             </Card>
                         ))}

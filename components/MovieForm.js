@@ -7,7 +7,7 @@ export default function MovieForm(props) {
         
         <View style={styles.container}>
 
-            <View>
+            <View style={styles.formulaire}>
                 <Text>Titre</Text>
                 <TextInput
                     style = {[styles.textInput, { height: 40 }]}
@@ -29,10 +29,11 @@ export default function MovieForm(props) {
                     placeholder = "L'url du film"
                     value = {props.urlImage}
                     onChangeText = {props.handleUrlImageChange}
-                />          
+                />
+                 <Button title="Mettre à jour" onPress={props.onSubmit} ></Button>         
             </View>
 
-            <Button title="Mettre à jour" onPress={props.onSubmit} ></Button>
+           
         </View>
     )
 }
@@ -40,8 +41,17 @@ export default function MovieForm(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#2E86C1",
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        
+    },
+    formulaire:{
+
+        backgroundColor: '#ffffff',
+        padding: '20px',
+        boxShadow : "5px 5px 15px #ABB2B9",
+
     },
     textInput: {
         borderWidth: 1,

@@ -86,10 +86,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    
   },
+  
   h1: {
     color: "royalblue",
+    textAlign: 'center',
     fontSize: 50,
-    fontWeight: "900"
+    fontWeight: "900",
+    marginBottom: 50,
+
   },
+  
+
+
+  
 });
