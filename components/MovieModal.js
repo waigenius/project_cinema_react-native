@@ -19,7 +19,7 @@ export default function MovieModal(props) {
       title: title,
       synopsis: synopsis,
       urlImage: urlImage,
-      commments : []      
+      comments : []      
     }
 
     if (props.movie) {

@@ -41,7 +41,7 @@ export default function MovieForm(props) {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "#2E86C1",
+        backgroundColor: "#154360",
         alignItems: "center",
         justifyContent: "center",
         

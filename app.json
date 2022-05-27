@@ -1,15 +1,16 @@
 {
   "expo": {
-    "name": "movies-correction",
-    "slug": "movies-correction",
+    "name": "MyMC-App",
+    "slug": "MyMC-App",
     "version": "1.0.0",
+    "sdkVersion": "44.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#f7f7ff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

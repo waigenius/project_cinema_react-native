@@ -1,8 +1,8 @@
-import { Button } from 'react-native'
+import { Button} from 'react-native'
 import React from 'react'
 
 export default function AddButton(props) {
   return (
-      <Button title={props.content} onPress={props.handlePressAdd}> </Button>
+      <Button  title={props.content} onPress={props.handlePressAdd}> </Button>
   )
 }

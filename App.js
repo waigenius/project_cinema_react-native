@@ -34,7 +34,7 @@ export default function App() {
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.h1}>
-          Welcome to movies
+          Welcome to MyMC
         </Text>
 
         {loading === true && <ActivityIndicator></ActivityIndicator>}
@@ -46,6 +46,7 @@ export default function App() {
             movie={selectedMovie}
             isCreateComments={isCommentModalVisible}
             handleClose={() => { setIsModalVisible(false), setSelectedMovie(null) }}
+            
           />
 
         )}
@@ -54,6 +55,7 @@ export default function App() {
           isVisible={isModalVisible}
           handlePressUpdate={(movie) => { setIsModalVisible(true), setSelectedMovie(movie) }}
           handleCommentPress={(movie) => { setIsCommentModalVisible(true), setSelectedMovie(movie) }}
+          
         />
 
         {/* MODAL POUR LE COMMENTAIRE */}
@@ -83,7 +85,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f7f7f7',
     alignItems: 'center',
     justifyContent: 'center',
     
@@ -98,7 +100,6 @@ const styles = StyleSheet.create({
 
   },
   
-
 
   
 });

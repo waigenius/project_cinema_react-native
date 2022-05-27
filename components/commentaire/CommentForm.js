@@ -3,13 +3,11 @@ import React from 'react'
 
 export default function CommentForm(props) {
 
-    // Affichage du nom de l'auteur
-    console.log(props.commentAuthor);
 
     return (
-        <View>
-            <View>
-                <View>
+        <View style={styles.container}>
+            
+                <View style={styles.formulaire}>
                     
                     <Text>Nom de l'auteur</Text>
                     <TextInput
@@ -27,11 +25,9 @@ export default function CommentForm(props) {
                         value={props.commentaire}
                         onChangeText={props.handleCommentContentChange}
                     />
-          
+                     <Button title="Valider Commentaire" onPress={props.onSubmitCommentaire}></Button>
                 </View>
-
-                <Button title="Valider Commentaire" onPress={props.onSubmitCommentaire}></Button>
-            </View>
+            
         </View>
     )
 }
@@ -40,11 +36,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        
+    },
+    formulaire:{
+        backgroundColor: '#ffffff',
+        padding: '20px',
+
     },
     textInput: {
         borderWidth: 1,
         padding: 10,
+        margin : 10,
         width: "90%",
     }
 });
